@@ -1,13 +1,13 @@
 package com.adkinscoles.portfolio.components.widgets
 
 import androidx.compose.runtime.Composable
+import com.adkinscoles.portfolio.CircleButtonVariant
+import com.adkinscoles.portfolio.UncoloredButtonVariant
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.setVariable
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.forms.ButtonVars
 import org.jetbrains.compose.web.css.em
-import com.adkinscoles.portfolio.CircleButtonVariant
-import com.adkinscoles.portfolio.UncoloredButtonVariant
 
 @Composable
 fun IconButton(onClick: () -> Unit, content: @Composable () -> Unit) {

@@ -1,6 +1,12 @@
 package com.adkinscoles.portfolio.components.sections
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.setValue
+import com.adkinscoles.portfolio.SitePalettes
+import com.adkinscoles.portfolio.components.widgets.IconButton
+import com.adkinscoles.portfolio.toSitePalette
 import com.varabyte.kobweb.browser.dom.ElementTarget
 import com.varabyte.kobweb.compose.css.functions.clamp
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -10,7 +16,6 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.icons.CloseIcon
 import com.varabyte.kobweb.silk.components.icons.HamburgerIcon
 import com.varabyte.kobweb.silk.components.icons.MoonIcon
@@ -26,14 +31,9 @@ import com.varabyte.kobweb.silk.style.CssStyle
 import com.varabyte.kobweb.silk.style.animation.Keyframes
 import com.varabyte.kobweb.silk.style.animation.toAnimation
 import com.varabyte.kobweb.silk.style.base
-import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.style.breakpoint.displayIfAtLeast
-import com.varabyte.kobweb.silk.style.breakpoint.displayUntil
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.*
-import com.adkinscoles.portfolio.components.widgets.IconButton
-import com.adkinscoles.portfolio.toSitePalette
 
 val NavHeaderStyle = CssStyle.base {
     Modifier.fillMaxWidth().padding(1.cssRem)
@@ -44,17 +44,17 @@ private fun NavLink(path: String, text: String) {
     Link(path, text, variant = UndecoratedLinkVariant.then(UncoloredLinkVariant))
 }
 
-@Composable
-private fun MenuItems() {
-    NavLink("/", "Home")
-    NavLink("/about", "About")
-}
+//@Composable
+//private fun MenuItems() {
+//    NavLink("/", "Home")
+//    NavLink("/about", "About")
+//}
 
 @Composable
 private fun ColorModeButton() {
     var colorMode by ColorMode.currentState
     IconButton(onClick = { colorMode = colorMode.opposite },) {
-        if (colorMode.isLight) MoonIcon() else SunIcon()
+        if (colorMode.isLight) MoonIcon(Modifier.color(SitePalettes.dark.brand.accent)) else SunIcon(Modifier.color(SitePalettes.dark.brand.accent))
     }
     Tooltip(ElementTarget.PreviousSibling, "Toggle color mode", placement = PopupPlacement.BottomRight)
 }
@@ -100,38 +100,33 @@ enum class SideMenuState {
 @Composable
 fun NavHeader() {
     Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
-        Link("https://kobweb.varabyte.com") {
-            // Block display overrides inline display of the <img> tag, so it calculates centering better
-            Image("/kobweb-logo.png", "Kobweb Logo", Modifier.height(2.cssRem).display(DisplayStyle.Block))
-        }
-
         Spacer()
 
-        Row(Modifier.gap(1.5.cssRem).displayIfAtLeast(Breakpoint.MD), verticalAlignment = Alignment.CenterVertically) {
-            MenuItems()
+        Row(Modifier.gap(1.5.cssRem), verticalAlignment = Alignment.CenterVertically) {
+//            MenuItems()
             ColorModeButton()
         }
 
-        Row(
-            Modifier
-                .fontSize(1.5.cssRem)
-                .gap(1.cssRem)
-                .displayUntil(Breakpoint.MD),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
-
-            ColorModeButton()
-            HamburgerButton(onClick =  { menuState = SideMenuState.OPEN })
-
-            if (menuState != SideMenuState.CLOSED) {
-                SideMenu(
-                    menuState,
-                    close = { menuState = menuState.close() },
-                    onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED }
-                )
-            }
-        }
+//        Row(
+//            Modifier
+//                .fontSize(1.5.cssRem)
+//                .gap(1.cssRem)
+//                .displayUntil(Breakpoint.MD),
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            var menuState by remember { mutableStateOf(SideMenuState.CLOSED) }
+//
+//            ColorModeButton()
+//            HamburgerButton(onClick =  { menuState = SideMenuState.OPEN })
+//
+//            if (menuState != SideMenuState.CLOSED) {
+//                SideMenu(
+//                    menuState,
+//                    close = { menuState = menuState.close() },
+//                    onAnimationEnd = { if (menuState == SideMenuState.CLOSING) menuState = SideMenuState.CLOSED }
+//                )
+//            }
+//        }
     }
 }
 
@@ -167,9 +162,9 @@ private fun SideMenu(menuState: SideMenuState, close: () -> Unit, onAnimationEnd
                 horizontalAlignment = Alignment.End
             ) {
                 CloseButton(onClick = { close() })
-                Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End) {
-                    MenuItems()
-                }
+//                Column(Modifier.padding(right = 0.75.cssRem).gap(1.5.cssRem).fontSize(1.4.cssRem), horizontalAlignment = Alignment.End) {
+//                    MenuItems()
+//                }
             }
         }
     }

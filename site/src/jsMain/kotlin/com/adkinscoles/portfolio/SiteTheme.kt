@@ -1,5 +1,7 @@
 package com.adkinscoles.portfolio
 
+import com.varabyte.kobweb.compose.css.BackgroundImage
+import com.varabyte.kobweb.compose.css.functions.url
 import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.silk.init.InitSilk
@@ -14,32 +16,33 @@ import com.varabyte.kobweb.silk.theme.colors.palette.color
  */
 class SitePalette(
     val nearBackground: Color,
-    val cobweb: Color,
     val brand: Brand,
 ) {
     class Brand(
-        val primary: Color = Color.rgb(0x3C83EF),
-        val accent: Color = Color.rgb(0xF3DB5B),
+        val primary: Color = Color.rgb(0x394F49),
+        val accent: Color = Color.rgb(0x394F49),
     )
 }
 
 object SitePalettes {
     val light = SitePalette(
         nearBackground = Color.rgb(0xF4F6FA),
-        cobweb = Colors.LightGray,
         brand = SitePalette.Brand(
-            primary = Color.rgb(0x3C83EF),
-            accent = Color.rgb(0xFCBA03),
-        )
+            primary = Color.rgb(0x9FACBC),
+            accent = Color.rgb(0xF4D58D)
+        ),
     )
     val dark = SitePalette(
         nearBackground = Color.rgb(0x13171F),
-        cobweb = Colors.LightGray.inverted(),
         brand = SitePalette.Brand(
-            primary = Color.rgb(0x3C83EF),
-            accent = Color.rgb(0xF3DB5B),
-        )
+            primary = Color.rgb(0x394F49),
+            accent = Color.rgb(0xF4D58D),
+        ),
     )
+}
+
+object Background {
+    val image = BackgroundImage.of(url("/rocks.jpg"))
 }
 
 fun ColorMode.toSitePalette(): SitePalette {
@@ -53,6 +56,6 @@ fun ColorMode.toSitePalette(): SitePalette {
 fun initTheme(ctx: InitSilkContext) {
     ctx.theme.palettes.light.background = Color.rgb(0xFAFAFA)
     ctx.theme.palettes.light.color = Colors.Black
-    ctx.theme.palettes.dark.background = Color.rgb(0x06080B)
+    ctx.theme.palettes.dark.background = Color.rgb(0x42454C)
     ctx.theme.palettes.dark.color = Colors.White
 }
