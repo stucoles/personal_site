@@ -25,9 +25,9 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Div
 
-// Container that has a tagline and grid on desktop, and just the tagline on mobile
 val HeroContainerStyle = CssStyle {
-    base { Modifier.fillMaxWidth().gap(2.cssRem) }
+    base { Modifier.fillMaxWidth().gap(2.cssRem).margin { bottom(7.vh) } }
+    Breakpoint.MD { Modifier.margin { bottom(0.vh) } }
     Breakpoint.MD { Modifier.margin { top(0.vh)} }
     Breakpoint.XL { Modifier.margin { top(15.vh) } }
 }
