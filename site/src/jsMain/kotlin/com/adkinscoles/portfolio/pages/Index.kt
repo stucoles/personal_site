@@ -2,7 +2,6 @@ package com.adkinscoles.portfolio.pages
 
 import androidx.compose.runtime.Composable
 import com.adkinscoles.portfolio.HeadlineTextStyle
-import com.adkinscoles.portfolio.SitePalettes
 import com.adkinscoles.portfolio.SubheadlineTextStyle
 import com.adkinscoles.portfolio.components.layouts.PageLayout
 import com.adkinscoles.portfolio.toSitePalette
@@ -28,8 +27,8 @@ import org.jetbrains.compose.web.dom.Div
 
 // Container that has a tagline and grid on desktop, and just the tagline on mobile
 val HeroContainerStyle = CssStyle {
-    base { Modifier.fillMaxWidth().gap(2.cssRem)}
-    Breakpoint.MD { Modifier.margin { top(3.vh)} }
+    base { Modifier.fillMaxWidth().gap(2.cssRem) }
+    Breakpoint.MD { Modifier.margin { top(0.vh)} }
     Breakpoint.XL { Modifier.margin { top(15.vh) } }
 }
 
@@ -51,15 +50,20 @@ fun HomePage() {
                         SpanText(
                             "Stuart Adkins Coles", Modifier.color(
                                 when (ColorMode.current) {
-                                    ColorMode.LIGHT -> SitePalettes.light.brand.accent
-                                    ColorMode.DARK -> SitePalettes.dark.brand.accent
+                                    ColorMode.LIGHT -> Color.black
+                                    ColorMode.DARK -> Color.ghostwhite
                                 }
                             )
                         )
                     }
 
                     Div(SubheadlineTextStyle.toAttrs()) {
-                        SpanText("software engineer in the san francisco bay area")
+                        SpanText("software engineer - san francisco bay area", Modifier.color(
+                            when (ColorMode.current) {
+                                ColorMode.LIGHT -> Color.black
+                                ColorMode.DARK -> Color.ghostwhite
+                            }
+                        ))
                     }
 
                     Div(SubheadlineTextStyle.toAttrs()) {

@@ -55,6 +55,7 @@ val HeadlineTextStyle = CssStyle {
         Modifier
             .fontSize(2.cssRem)
             .textAlign(TextAlign.Center)
+            .fontFamily("IBM Plex Sans")
             .lineHeight(1.2) //1.5x doesn't look as good on very large text
     }
     Breakpoint.MD {
@@ -66,6 +67,7 @@ val SubheadlineTextStyle = CssStyle.base {
     Modifier
         .fontSize(1.cssRem)
         .textAlign(TextAlign.Center)
+        .fontFamily("Domine")
         .color(colorMode.toPalette().color.toRgb().copyf(alpha = 0.8f))
 }
 
